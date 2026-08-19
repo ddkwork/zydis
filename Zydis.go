@@ -10498,56 +10498,56 @@ type (
 	} // Disassembler.h:0 -> ZydisDecodedInstruction_
 )
 
-func ZyanIsPowerOf2(X uint32) bool {
-	return (X & (X - 1)) == 0
-}
-
-func ZyanAlignUp(X uint32, Align uint32) uint32 {
-	return uint32((X + Align - 1) &^ (Align - 1))
-}
-
 func ZydisVersionMinor(Version uint64) uint64 {
 	return uint64((Version & 0x0000FFFF00000000) >> 32)
-}
-
-func ZyanFailed(Status uint64) bool {
-	return (Status & 0x80000000) != 0
-}
-
-func ZyanAlignDown(X uint32, Align uint32) uint32 {
-	return uint32((X - 1) &^ (Align - 1))
-}
-
-func ZyanStatusModule(Status uint32) uint32 {
-	return uint32((Status >> 20) & 0x7FF)
-}
-
-func ZydisVersionMajor(Version uint64) uint64 {
-	return uint64((Version & 0xFFFF000000000000) >> 48)
-}
-
-func ZyanStatusCode(Status uint32) uint32 {
-	return uint32((Status & 0xFFFFF))
-}
-
-func ZydisVersionPatch(Version uint64) uint64 {
-	return uint64((Version & 0x00000000FFFF0000) >> 16)
 }
 
 func ZyanSuccess(Status uint64) bool {
 	return (Status & 0x80000000) == 0
 }
 
-func ZydisVersionBuild(Version uint64) uint64 {
-	return uint64((Version & 0x000000000000FFFF))
+func ZyanStatusModule(Status uint32) uint32 {
+	return uint32((Status >> 20) & 0x7FF)
+}
+
+func ZyanIsAlignedTo(X uint32, Align uint32) bool {
+	return (X & (Align - 1)) == 0
+}
+
+func ZyanIsPowerOf2(X uint32) bool {
+	return (X & (X - 1)) == 0
 }
 
 func ZyanMakeStatus(Error uint32, Module uint32, Code uint32) uint32 {
 	return uint32((((Error & 0x01) << 31) | ((Module & 0x7FF) << 20) | (Code & 0xFFFFF)))
 }
 
-func ZyanIsAlignedTo(X uint32, Align uint32) bool {
-	return (X & (Align - 1)) == 0
+func ZydisVersionPatch(Version uint64) uint64 {
+	return uint64((Version & 0x00000000FFFF0000) >> 16)
+}
+
+func ZydisVersionBuild(Version uint64) uint64 {
+	return uint64((Version & 0x000000000000FFFF))
+}
+
+func ZyanAlignDown(X uint32, Align uint32) uint32 {
+	return uint32((X - 1) &^ (Align - 1))
+}
+
+func ZydisVersionMajor(Version uint64) uint64 {
+	return uint64((Version & 0xFFFF000000000000) >> 48)
+}
+
+func ZyanFailed(Status uint64) bool {
+	return (Status & 0x80000000) != 0
+}
+
+func ZyanStatusCode(Status uint32) uint32 {
+	return uint32((Status & 0xFFFFF))
+}
+
+func ZyanAlignUp(X uint32, Align uint32) uint32 {
+	return uint32((X + Align - 1) &^ (Align - 1))
 }
 
 // Source: Zydis.h -> Macro constants
